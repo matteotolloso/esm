@@ -1,3 +1,6 @@
+dataset/*
+
+
 # tensor dumps
 *.pt
 # Compiler Output #
