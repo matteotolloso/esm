@@ -5,13 +5,13 @@ from Bio.Seq import Seq
 import sys
 import numpy as np
 import multiprocessing
+import os
 
 # ********* SETTINGS **********
 
 
-FILE_PATH = "./dataset/globins.json"
-# FILE_PATH = "./dataset/covid19.json"
-#FILE_PATH = "./dataset/emoglobina.json"
+FILE_PATH = "./dataset/emoglobina.json"
+
 
 
 ANNOTATION_KEY = "esm"
@@ -55,6 +55,10 @@ def predict(id, query_sequence):
     return
 
 
+
+
+pid = os.getpid()
+print(f'{pid}, {FILE_PATH}', file=sys.stderr)
 
 
 seq_dict = []
