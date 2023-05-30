@@ -6,6 +6,7 @@ import sys
 import numpy as np
 import multiprocessing
 import os
+import time
 
 # ********* SETTINGS **********
 
@@ -20,6 +21,9 @@ ANNOTATION_KEY = "esm"
 
 
 def predict(id, query_sequence):
+
+    # evaluate the time
+    start = time.time()
 
     # Load ESM-2 model
     model, alphabet = esm.pretrained.esm2_t33_650M_UR50D()
@@ -44,12 +48,21 @@ def predict(id, query_sequence):
     
     z = np.array(token_representations[0, 1 : batch_lens[0] - 1]).tolist() 
 
-    with open(FILE_PATH, "r") as file:   # load the list of seqrecords alreay annotated with the others embeddings
-        seq_dict = json.load(file)
-        seq_dict[id][ANNOTATION_KEY] = z
-    
-    with open(FILE_PATH, "w") as file:   # save the list of seqrecords alreay annotated with the others embeddings
-        json.dump(seq_dict, file, indent=4)
+    end = time.time()
+
+    print(f"Time for embedding: {end - start}", file=sys.stderr)
+
+
+    seq_dict[id][ANNOTATION_KEY] = z
+
+    # start = time.time()
+    # with open(FILE_PATH, "r") as file:   # load the list of seqrecords alreay annotated with the others embeddings
+    #     seq_dict = json.load(file)
+    #     seq_dict[id][ANNOTATION_KEY] = z
+    # with open(FILE_PATH, "w") as file:   # save the list of seqrecords alreay annotated with the others embeddings
+    #     json.dump(seq_dict, file, indent=4)
+    # end = time.time()
+    # print(f"Time for saving: {end - start}", file=sys.stderr)
 
     print("element added", file=sys.stderr)
     return
@@ -85,12 +98,15 @@ for id in seq_dict.keys():
 
     # the code run in a different process to avoid memory leaks
 
+    predict(id, seq_string)
 
-    p = multiprocessing.Process(target=predict, args=(id, seq_string, ))
-    p.start()
 
-    p.join()
-        
+    # p = multiprocessing.Process(target=predict, args=(id, seq_string, ))
+    # p.start()
+    # p.join()
+
+with open(FILE_PATH, "w") as file:   # save the list of seqrecords alreay annotated with the others embeddings
+    json.dump(seq_dict, file, indent=4)
 
 
 
