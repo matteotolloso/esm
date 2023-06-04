@@ -4,20 +4,16 @@ import json
 from Bio.Seq import Seq
 import sys
 import numpy as np
-import multiprocessing
 import os
 import time
 
 # ********* SETTINGS **********
 
 
-FILE_PATH = "./dataset/globins.json"
+FILE_PATH = "./dataset/topo.json"
 MAX_CHUNK_SIZE = 1024
 SAVE_EVERY = 100
-
-
-
-ANNOTATION_KEY = "esmfold"
+ANNOTATION_KEY = "esmfold_650M"
 
 # *****************************
 
@@ -86,7 +82,8 @@ def main():
         
         sequence_embedding = []
         for chunk_index, chunk in enumerate(chunks):
-            print(f"Predicting the embedding for {id}, chunk {chunk_index}", file=sys.stderr)
+            print(f"Predicting the embedding for {id} ({seq_index+1}\{len(seq_dict.keys())}),\
+                   chunk {chunk_index+1}/{len(chunks)}", file=sys.stderr)
             z = predict(id, chunk)
             sequence_embedding.append(z)
         
