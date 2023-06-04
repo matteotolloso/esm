@@ -11,11 +11,13 @@ import time
 # ********* SETTINGS **********
 
 
-FILE_PATH = "./dataset/emoglobina.json"
+FILE_PATH = "./dataset/globins.json"
+MAX_CHUNK_SIZE = 1024
+SAVE_EVERY = 100
 
 
 
-ANNOTATION_KEY = "esm"
+ANNOTATION_KEY = "esmfold"
 
 # *****************************
 
@@ -37,7 +39,6 @@ def predict(id, query_sequence):
     batch_labels, batch_strs, batch_tokens = batch_converter(data)
     batch_lens = (batch_tokens != alphabet.padding_idx).sum(1)  # contains the lens of each sequence
 
-
     # Extract per-residue representations (on CPU)
     with torch.no_grad():
         results = model(batch_tokens, repr_layers=[33], return_contacts=True)
@@ -52,68 +53,55 @@ def predict(id, query_sequence):
 
     print(f"Time for embedding: {end - start}", file=sys.stderr)
 
-
-    seq_dict[id][ANNOTATION_KEY] = z
-
-    # start = time.time()
-    # with open(FILE_PATH, "r") as file:   # load the list of seqrecords alreay annotated with the others embeddings
-    #     seq_dict = json.load(file)
-    #     seq_dict[id][ANNOTATION_KEY] = z
-    # with open(FILE_PATH, "w") as file:   # save the list of seqrecords alreay annotated with the others embeddings
-    #     json.dump(seq_dict, file, indent=4)
-    # end = time.time()
-    # print(f"Time for saving: {end - start}", file=sys.stderr)
-
-    print("element added", file=sys.stderr)
-    return
+    return z
 
 
 
+def main():
 
-pid = os.getpid()
-print(f'{pid}, {FILE_PATH}', file=sys.stderr)
-
-
-seq_dict = []
-    
-with open(FILE_PATH, "r") as file:   # load the list of seqrecords alreay annotated with the others embeddings
+    pid = os.getpid()
+    print(f'{pid}, {FILE_PATH}', file=sys.stderr)
+        
+    file = open(FILE_PATH, "r")    # load the list of seqrecords alreay annotated with the others embeddings
     seq_dict = json.load(file)
+    file.close()
+
+    for seq_index, id in enumerate(seq_dict.keys()):
+
+        if ANNOTATION_KEY in seq_dict[id]:
+            print(f"key: {id} already embedded", file=sys.stderr)
+            continue
+
+        seq_string = seq_dict[id]["sequence"]
+
+        seq_string = seq_string.replace(" ", "").replace("\n", "")
+
+        if set(seq_string).issubset(set(["A", "C", "G", "T"])):
+            seq_string = str(Seq(seq_string).translate(stop_symbol=""))
+            print("The nucleotides sequence for ", id, " has been translated", file=sys.stderr)
+        
+        # split the sequence in chunks such that each chunk has approximately the same length
+        N = int(np.ceil(len(seq_string) / MAX_CHUNK_SIZE)) # number of chunks
+        chunks = [seq_string[(i*len(seq_string))//N:((i+1)*len(seq_string))//N] for i in range(N)] # list of chunks
+        
+        sequence_embedding = []
+        for chunk_index, chunk in enumerate(chunks):
+            print(f"Predicting the embedding for {id}, chunk {chunk_index}", file=sys.stderr)
+            z = predict(id, chunk)
+            sequence_embedding.append(z)
+        
+        seq_dict[id][ANNOTATION_KEY] = sequence_embedding
+
+        # save the embedding every 100 sequences or at the end
+        if (seq_index + 1) % SAVE_EVERY == 0 or seq_index == len(seq_dict.keys()) - 1:
+            print(f"Dumping the results", file=sys.stderr)
+            start = time.time()
+            with open(FILE_PATH, "w") as file:	
+                json.dump(seq_dict, file, indent=4)
+            end = time.time()
+            print(f"Dump executed in {end - start}s", file=sys.stderr)
 
 
-for id in seq_dict.keys():
 
-    if ANNOTATION_KEY in seq_dict[id]:
-        print(f"key: {id} already embedded", file=sys.stderr)
-        continue
-
-    seq_string = seq_dict[id]["sequence"]
-
-    seq_string = seq_string.replace(" ", "").replace("\n", "")
-
-    if set(seq_string).issubset(set(["A", "C", "G", "T"])):
-        seq_string = str(Seq(seq_string).translate(stop_symbol=""))
-        print("The nucleotides sequence for ", id, " has been translated", file=sys.stderr)
-
-    print("Predicting the embedding for ", id, "...", file=sys.stderr)
-
-    # the code run in a different process to avoid memory leaks
-
-    predict(id, seq_string)
-
-
-    # p = multiprocessing.Process(target=predict, args=(id, seq_string, ))
-    # p.start()
-    # p.join()
-
-with open(FILE_PATH, "w") as file:   # save the list of seqrecords alreay annotated with the others embeddings
-    json.dump(seq_dict, file, indent=4)
-
-
-
-# Look at the unsupervised self-attention map contact predictions
-def vis():
-    import matplotlib.pyplot as plt
-    for (_, seq), tokens_len, attention_contacts in zip(data, batch_lens, results["contacts"]):
-        plt.matshow(attention_contacts[: tokens_len, : tokens_len])
-        plt.title(seq)
-        plt.show()
+if __name__ == "__main__":
+    main()
