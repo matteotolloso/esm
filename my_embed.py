@@ -6,14 +6,14 @@ import sys
 import numpy as np
 import os
 import time
+from Bio import SeqIO
+
 
 # ********* SETTINGS **********
 
-
-FILE_PATH = "./dataset/topo.json"
+FASTA_FILE_PATH = "./dataset/batterio.fasta"
+OUT_DIR = './dataset/batterio_esm'
 MAX_CHUNK_SIZE = 1024
-SAVE_EVERY = 100
-ANNOTATION_KEY = "esmfold_650M"
 
 # *****************************
 
@@ -56,25 +56,27 @@ def predict(id, query_sequence):
 def main():
 
     pid = os.getpid()
-    print(f'{pid}, {FILE_PATH}', file=sys.stderr)
-        
-    file = open(FILE_PATH, "r")    # load the list of seqrecords alreay annotated with the others embeddings
-    seq_dict = json.load(file)
-    file.close()
+    print(f'{pid}, {FASTA_FILE_PATH}', file=sys.stderr)
 
-    for seq_index, id in enumerate(seq_dict.keys()):
+    # check if the output directory exists
+    if not os.path.exists(OUT_DIR):
+        os.makedirs(OUT_DIR)        
 
-        if ANNOTATION_KEY in seq_dict[id]:
-            print(f"key: {id} already embedded", file=sys.stderr)
+    for count, seqrecord in enumerate(SeqIO.parse(FASTA_FILE_PATH, "fasta")):
+
+        seq_id = seqrecord.id
+
+        # check if the file already exists
+        if os.path.exists(os.path.join(OUT_DIR, f"{seq_id}.npy")):
+            print(f"Skipping {seq_id} because already exists", file=sys.stderr)
             continue
 
-        seq_string = seq_dict[id]["sequence"]
-
+        seq_string = str(seqrecord.seq)
         seq_string = seq_string.replace(" ", "").replace("\n", "")
 
         if set(seq_string).issubset(set(["A", "C", "G", "T"])):
             seq_string = str(Seq(seq_string).translate(stop_symbol=""))
-            print("The nucleotides sequence for ", id, " has been translated", file=sys.stderr)
+            print("The nucleotides sequence for ", seq_id, " has been translated", file=sys.stderr)
         
         # split the sequence in chunks such that each chunk has approximately the same length
         N = int(np.ceil(len(seq_string) / MAX_CHUNK_SIZE)) # number of chunks
@@ -82,22 +84,16 @@ def main():
         
         sequence_embedding = []
         for chunk_index, chunk in enumerate(chunks):
-            print(f"Predicting the embedding for {id} ({seq_index+1}\{len(seq_dict.keys())}),\
-                   chunk {chunk_index+1}/{len(chunks)}", file=sys.stderr)
-            z = predict(id, chunk)
+            print(f"Predicting the embedding {count+1}, chunk {chunk_index+1}/{len(chunks)}", file=sys.stderr)
+            z = predict(seq_id, chunk)
             sequence_embedding.append(z)
         
-        seq_dict[id][ANNOTATION_KEY] = sequence_embedding
+        sequence_embedding = np.array(sequence_embedding)
 
-        # save the embedding every 100 sequences or at the end
-        if (seq_index + 1) % SAVE_EVERY == 0 or seq_index == len(seq_dict.keys()) - 1:
-            print(f"Dumping the results", file=sys.stderr)
-            start = time.time()
-            with open(FILE_PATH, "w") as file:	
-                json.dump(seq_dict, file, indent=4)
-            end = time.time()
-            print(f"Dump executed in {end - start}s", file=sys.stderr)
+        # save the embedding
+        np.save(os.path.join(OUT_DIR, f"{seq_id}.npy"), sequence_embedding)
 
+    print(f'{pid}, DONE', file=sys.stderr)
 
 
 if __name__ == "__main__":
