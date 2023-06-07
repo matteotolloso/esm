@@ -11,8 +11,8 @@ from Bio import SeqIO
 
 # ********* SETTINGS **********
 
-FASTA_FILE_PATH = "./dataset/batterio.fasta"
-OUT_DIR = './dataset/batterio_esm'
+FASTA_FILE_PATH = "./dataset/covid19.fasta"
+OUT_DIR = './dataset/covid19_esm'
 MAX_CHUNK_SIZE = 1024
 
 # *****************************
@@ -87,8 +87,12 @@ def main():
             print(f"Predicting the embedding {count+1}, chunk {chunk_index+1}/{len(chunks)}", file=sys.stderr)
             z = predict(seq_id, chunk)
             sequence_embedding.append(z)
-        
-        sequence_embedding = np.array(sequence_embedding)
+
+        # can happen that che subsequences are not of the same length, in this case pad them with the mean value
+        max_len = max([len(z) for z in sequence_embedding]) # z is a np array size (chunk_size x 1280)
+        for i, z in enumerate(sequence_embedding):
+            if len(z) < max_len:
+                sequence_embedding[i] = np.append(z, [np.mean(z, axis=0)], axis=0) # it is enough to append only one value, since the max difference between chunks is 1
 
         # save the embedding
         np.save(os.path.join(OUT_DIR, f"{seq_id}.npy"), sequence_embedding)
