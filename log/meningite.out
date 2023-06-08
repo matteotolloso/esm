@@ -1,0 +1,51 @@
+1262660, ./dataset/meningite.fasta
+/home/matteotolloso/miniconda3/envs/esmfold/lib/python3.7/site-packages/Bio/Seq.py:2983: BiopythonWarning: Partial codon, len(sequence) not a multiple of three. Explicitly trim the sequence or add trailing N before translation. This may become an error in future.
+  BiopythonWarning,
+The nucleotides sequence for  CP020423.2  has been translated
+Predicting the embedding 1, chunk 1/710
+Time for embedding: 70.56379795074463
+Predicting the embedding 1, chunk 2/710
+Time for embedding: 67.87579846382141
+Predicting the embedding 1, chunk 3/710
+Time for embedding: 19.2895085811615
+Predicting the embedding 1, chunk 4/710
+Time for embedding: 19.217028856277466
+Predicting the embedding 1, chunk 5/710
+Time for embedding: 19.86075758934021
+Predicting the embedding 1, chunk 6/710
+Time for embedding: 18.682697534561157
+Predicting the embedding 1, chunk 7/710
+Time for embedding: 19.708496570587158
+Predicting the embedding 1, chunk 8/710
+Time for embedding: 19.896934270858765
+Predicting the embedding 1, chunk 9/710
+Time for embedding: 19.765914916992188
+Predicting the embedding 1, chunk 10/710
+Time for embedding: 19.383352518081665
+Predicting the embedding 1, chunk 11/710
+Time for embedding: 20.178131580352783
+Predicting the embedding 1, chunk 12/710
+Time for embedding: 19.169872522354126
+Predicting the embedding 1, chunk 13/710
+Time for embedding: 20.06276249885559
+Predicting the embedding 1, chunk 14/710
+Time for embedding: 19.941262245178223
+Predicting the embedding 1, chunk 15/710
+Time for embedding: 19.533363819122314
+Predicting the embedding 1, chunk 16/710
+Time for embedding: 19.424923181533813
+Predicting the embedding 1, chunk 17/710
+Time for embedding: 18.561214685440063
+Predicting the embedding 1, chunk 18/710
+Time for embedding: 19.6051082611084
+Predicting the embedding 1, chunk 19/710
+Time for embedding: 19.857316732406616
+Predicting the embedding 1, chunk 20/710
+Time for embedding: 19.228139400482178
+Predicting the embedding 1, chunk 21/710
+Time for embedding: 20.534898042678833
+Predicting the embedding 1, chunk 22/710
+Time for embedding: 19.852450847625732
+Predicting the embedding 1, chunk 23/710
+Time for embedding: 21.859345197677612
+Predicting the embedding 1, chunk 24/710
