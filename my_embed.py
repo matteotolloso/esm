@@ -7,6 +7,7 @@ import numpy as np
 import os
 import time
 from Bio import SeqIO
+from multiprocessing import Process
 
 
 # ********* SETTINGS **********
@@ -19,7 +20,7 @@ FAST_MODE = False
 # *****************************
 
 
-def predict(id, query_sequence):
+def predict(id, chunk_index, query_sequence, write_to_path=False):
 
     # evaluate the time
     start = time.time()
@@ -45,6 +46,9 @@ def predict(id, query_sequence):
     # NOTE: token 0 is always a beginning-of-sequence token, so the first residue is token 1.
     
     z = np.array(token_representations[0, 1 : batch_lens[0] - 1]).tolist() 
+
+    if write_to_path != False:
+        np.save(write_to_path, z)
 
     end = time.time()
 
@@ -90,7 +94,7 @@ def main():
             sequence_embedding = []
             for chunk_index, chunk in enumerate(chunks):
                 print(f"Predicting the embedding {count+1}, chunk {chunk_index+1}/{len(chunks)}", file=sys.stderr, flush=True)
-                z = predict(seq_id, chunk)
+                z = predict(seq_id, chunk_index, chunk, write_to_path=False)
                 sequence_embedding.append(z)
 
             # can happen that che subsequences are not of the same length, in this case pad them with the mean value
@@ -109,10 +113,17 @@ def main():
             # save each chunk in a separate file
             for chunk_index, chunk in enumerate(chunks):
                 print(f"Predicting the embedding {count+1}, chunk {chunk_index+1}/{len(chunks)}", file=sys.stderr, flush=True)
-                z = predict(seq_id, chunk)
-                np.save(os.path.join(OUT_DIR, f"{seq_id}_chunk:{chunk_index}.npy"), z)
+                # check if the file already exists
+                if os.path.exists(os.path.join(OUT_DIR, f"{seq_id}_chunk:{chunk_index}.npy")):
+                    print(f"Skipping {seq_id}_chunk:{chunk_index+1} because already exists", file=sys.stderr, flush=True)
+                    continue
+                # run predict in a separate process
+                p = Process(target=predict, args=(seq_id, chunk_index, chunk, os.path.join(OUT_DIR, f"{seq_id}_chunk:{chunk_index}.npy")))
+                p.start()
+                p.join()
             
             # load the chunks and recombine them
+            print(f"Recombining the chunks for {seq_id}", file=sys.stderr, flush=True)
             sequence_embedding = []
             for chunk_index in range(chunks):
                 z = np.load(os.path.join(OUT_DIR, f"{seq_id}_chunk:{chunk_index}.npy"))

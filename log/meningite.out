@@ -1,51 +1,249 @@
-1262660, ./dataset/meningite.fasta
+1274585, ./dataset/meningite.fasta
 /home/matteotolloso/miniconda3/envs/esmfold/lib/python3.7/site-packages/Bio/Seq.py:2983: BiopythonWarning: Partial codon, len(sequence) not a multiple of three. Explicitly trim the sequence or add trailing N before translation. This may become an error in future.
   BiopythonWarning,
 The nucleotides sequence for  CP020423.2  has been translated
 Predicting the embedding 1, chunk 1/710
-Time for embedding: 70.56379795074463
+Skipping CP020423.2_chunk:1 because already exists
 Predicting the embedding 1, chunk 2/710
-Time for embedding: 67.87579846382141
+Skipping CP020423.2_chunk:2 because already exists
 Predicting the embedding 1, chunk 3/710
-Time for embedding: 19.2895085811615
+Skipping CP020423.2_chunk:3 because already exists
 Predicting the embedding 1, chunk 4/710
-Time for embedding: 19.217028856277466
+Skipping CP020423.2_chunk:4 because already exists
 Predicting the embedding 1, chunk 5/710
-Time for embedding: 19.86075758934021
+Skipping CP020423.2_chunk:5 because already exists
 Predicting the embedding 1, chunk 6/710
-Time for embedding: 18.682697534561157
+Skipping CP020423.2_chunk:6 because already exists
 Predicting the embedding 1, chunk 7/710
-Time for embedding: 19.708496570587158
+Skipping CP020423.2_chunk:7 because already exists
 Predicting the embedding 1, chunk 8/710
-Time for embedding: 19.896934270858765
+Skipping CP020423.2_chunk:8 because already exists
 Predicting the embedding 1, chunk 9/710
-Time for embedding: 19.765914916992188
+Skipping CP020423.2_chunk:9 because already exists
 Predicting the embedding 1, chunk 10/710
-Time for embedding: 19.383352518081665
+Skipping CP020423.2_chunk:10 because already exists
 Predicting the embedding 1, chunk 11/710
-Time for embedding: 20.178131580352783
+Skipping CP020423.2_chunk:11 because already exists
 Predicting the embedding 1, chunk 12/710
-Time for embedding: 19.169872522354126
+Skipping CP020423.2_chunk:12 because already exists
 Predicting the embedding 1, chunk 13/710
-Time for embedding: 20.06276249885559
+Skipping CP020423.2_chunk:13 because already exists
 Predicting the embedding 1, chunk 14/710
-Time for embedding: 19.941262245178223
+Skipping CP020423.2_chunk:14 because already exists
 Predicting the embedding 1, chunk 15/710
-Time for embedding: 19.533363819122314
+Skipping CP020423.2_chunk:15 because already exists
 Predicting the embedding 1, chunk 16/710
-Time for embedding: 19.424923181533813
+Skipping CP020423.2_chunk:16 because already exists
 Predicting the embedding 1, chunk 17/710
-Time for embedding: 18.561214685440063
+Skipping CP020423.2_chunk:17 because already exists
 Predicting the embedding 1, chunk 18/710
-Time for embedding: 19.6051082611084
+Skipping CP020423.2_chunk:18 because already exists
 Predicting the embedding 1, chunk 19/710
-Time for embedding: 19.857316732406616
+Skipping CP020423.2_chunk:19 because already exists
 Predicting the embedding 1, chunk 20/710
-Time for embedding: 19.228139400482178
+Skipping CP020423.2_chunk:20 because already exists
 Predicting the embedding 1, chunk 21/710
-Time for embedding: 20.534898042678833
+Skipping CP020423.2_chunk:21 because already exists
 Predicting the embedding 1, chunk 22/710
-Time for embedding: 19.852450847625732
+Skipping CP020423.2_chunk:22 because already exists
 Predicting the embedding 1, chunk 23/710
-Time for embedding: 21.859345197677612
+Skipping CP020423.2_chunk:23 because already exists
 Predicting the embedding 1, chunk 24/710
+Skipping CP020423.2_chunk:24 because already exists
+Predicting the embedding 1, chunk 25/710
+Skipping CP020423.2_chunk:25 because already exists
+Predicting the embedding 1, chunk 26/710
+Skipping CP020423.2_chunk:26 because already exists
+Predicting the embedding 1, chunk 27/710
+Skipping CP020423.2_chunk:27 because already exists
+Predicting the embedding 1, chunk 28/710
+Skipping CP020423.2_chunk:28 because already exists
+Predicting the embedding 1, chunk 29/710
+Skipping CP020423.2_chunk:29 because already exists
+Predicting the embedding 1, chunk 30/710
+Skipping CP020423.2_chunk:30 because already exists
+Predicting the embedding 1, chunk 31/710
+Skipping CP020423.2_chunk:31 because already exists
+Predicting the embedding 1, chunk 32/710
+Skipping CP020423.2_chunk:32 because already exists
+Predicting the embedding 1, chunk 33/710
+Skipping CP020423.2_chunk:33 because already exists
+Predicting the embedding 1, chunk 34/710
+Skipping CP020423.2_chunk:34 because already exists
+Predicting the embedding 1, chunk 35/710
+Skipping CP020423.2_chunk:35 because already exists
+Predicting the embedding 1, chunk 36/710
+Skipping CP020423.2_chunk:36 because already exists
+Predicting the embedding 1, chunk 37/710
+Skipping CP020423.2_chunk:37 because already exists
+Predicting the embedding 1, chunk 38/710
+Skipping CP020423.2_chunk:38 because already exists
+Predicting the embedding 1, chunk 39/710
+Skipping CP020423.2_chunk:39 because already exists
+Predicting the embedding 1, chunk 40/710
+Skipping CP020423.2_chunk:40 because already exists
+Predicting the embedding 1, chunk 41/710
+Skipping CP020423.2_chunk:41 because already exists
+Predicting the embedding 1, chunk 42/710
+Skipping CP020423.2_chunk:42 because already exists
+Predicting the embedding 1, chunk 43/710
+Skipping CP020423.2_chunk:43 because already exists
+Predicting the embedding 1, chunk 44/710
+Skipping CP020423.2_chunk:44 because already exists
+Predicting the embedding 1, chunk 45/710
+Skipping CP020423.2_chunk:45 because already exists
+Predicting the embedding 1, chunk 46/710
+Skipping CP020423.2_chunk:46 because already exists
+Predicting the embedding 1, chunk 47/710
+Skipping CP020423.2_chunk:47 because already exists
+Predicting the embedding 1, chunk 48/710
+Skipping CP020423.2_chunk:48 because already exists
+Predicting the embedding 1, chunk 49/710
+Skipping CP020423.2_chunk:49 because already exists
+Predicting the embedding 1, chunk 50/710
+Skipping CP020423.2_chunk:50 because already exists
+Predicting the embedding 1, chunk 51/710
+Skipping CP020423.2_chunk:51 because already exists
+Predicting the embedding 1, chunk 52/710
+Skipping CP020423.2_chunk:52 because already exists
+Predicting the embedding 1, chunk 53/710
+Skipping CP020423.2_chunk:53 because already exists
+Predicting the embedding 1, chunk 54/710
+Skipping CP020423.2_chunk:54 because already exists
+Predicting the embedding 1, chunk 55/710
+Skipping CP020423.2_chunk:55 because already exists
+Predicting the embedding 1, chunk 56/710
+Skipping CP020423.2_chunk:56 because already exists
+Predicting the embedding 1, chunk 57/710
+Skipping CP020423.2_chunk:57 because already exists
+Predicting the embedding 1, chunk 58/710
+Skipping CP020423.2_chunk:58 because already exists
+Predicting the embedding 1, chunk 59/710
+Skipping CP020423.2_chunk:59 because already exists
+Predicting the embedding 1, chunk 60/710
+Skipping CP020423.2_chunk:60 because already exists
+Predicting the embedding 1, chunk 61/710
+Skipping CP020423.2_chunk:61 because already exists
+Predicting the embedding 1, chunk 62/710
+Skipping CP020423.2_chunk:62 because already exists
+Predicting the embedding 1, chunk 63/710
+Skipping CP020423.2_chunk:63 because already exists
+Predicting the embedding 1, chunk 64/710
+Skipping CP020423.2_chunk:64 because already exists
+Predicting the embedding 1, chunk 65/710
+Skipping CP020423.2_chunk:65 because already exists
+Predicting the embedding 1, chunk 66/710
+Skipping CP020423.2_chunk:66 because already exists
+Predicting the embedding 1, chunk 67/710
+Skipping CP020423.2_chunk:67 because already exists
+Predicting the embedding 1, chunk 68/710
+Skipping CP020423.2_chunk:68 because already exists
+Predicting the embedding 1, chunk 69/710
+Skipping CP020423.2_chunk:69 because already exists
+Predicting the embedding 1, chunk 70/710
+Skipping CP020423.2_chunk:70 because already exists
+Predicting the embedding 1, chunk 71/710
+Skipping CP020423.2_chunk:71 because already exists
+Predicting the embedding 1, chunk 72/710
+Skipping CP020423.2_chunk:72 because already exists
+Predicting the embedding 1, chunk 73/710
+Skipping CP020423.2_chunk:73 because already exists
+Predicting the embedding 1, chunk 74/710
+Skipping CP020423.2_chunk:74 because already exists
+Predicting the embedding 1, chunk 75/710
+Skipping CP020423.2_chunk:75 because already exists
+Predicting the embedding 1, chunk 76/710
+Skipping CP020423.2_chunk:76 because already exists
+Predicting the embedding 1, chunk 77/710
+Skipping CP020423.2_chunk:77 because already exists
+Predicting the embedding 1, chunk 78/710
+Skipping CP020423.2_chunk:78 because already exists
+Predicting the embedding 1, chunk 79/710
+Skipping CP020423.2_chunk:79 because already exists
+Predicting the embedding 1, chunk 80/710
+Skipping CP020423.2_chunk:80 because already exists
+Predicting the embedding 1, chunk 81/710
+Skipping CP020423.2_chunk:81 because already exists
+Predicting the embedding 1, chunk 82/710
+Skipping CP020423.2_chunk:82 because already exists
+Predicting the embedding 1, chunk 83/710
+Time for embedding: 70.78059697151184
+Predicting the embedding 1, chunk 84/710
+Time for embedding: 65.27529454231262
+Predicting the embedding 1, chunk 85/710
+Time for embedding: 20.813306093215942
+Predicting the embedding 1, chunk 86/710
+Time for embedding: 20.189707279205322
+Predicting the embedding 1, chunk 87/710
+Time for embedding: 33.72245502471924
+Predicting the embedding 1, chunk 88/710
+Time for embedding: 67.27361679077148
+Predicting the embedding 1, chunk 89/710
+Time for embedding: 20.358834981918335
+Predicting the embedding 1, chunk 90/710
+Time for embedding: 20.721189737319946
+Predicting the embedding 1, chunk 91/710
+Time for embedding: 20.21163773536682
+Predicting the embedding 1, chunk 92/710
+Time for embedding: 20.1413631439209
+Predicting the embedding 1, chunk 93/710
+Time for embedding: 20.549465894699097
+Predicting the embedding 1, chunk 94/710
+Time for embedding: 20.51486563682556
+Predicting the embedding 1, chunk 95/710
+Time for embedding: 20.391225576400757
+Predicting the embedding 1, chunk 96/710
+Time for embedding: 19.921008348464966
+Predicting the embedding 1, chunk 97/710
+Time for embedding: 20.248189210891724
+Predicting the embedding 1, chunk 98/710
+Time for embedding: 20.161664485931396
+Predicting the embedding 1, chunk 99/710
+Time for embedding: 20.95295286178589
+Predicting the embedding 1, chunk 100/710
+Time for embedding: 31.798800468444824
+Predicting the embedding 1, chunk 101/710
+Time for embedding: 66.54714155197144
+Predicting the embedding 1, chunk 102/710
+Time for embedding: 20.403312921524048
+Predicting the embedding 1, chunk 103/710
+Time for embedding: 20.28462243080139
+Predicting the embedding 1, chunk 104/710
+Time for embedding: 20.39284896850586
+Predicting the embedding 1, chunk 105/710
+Time for embedding: 20.12318515777588
+Predicting the embedding 1, chunk 106/710
+Time for embedding: 19.684396982192993
+Predicting the embedding 1, chunk 107/710
+Time for embedding: 19.980278253555298
+Predicting the embedding 1, chunk 108/710
+Time for embedding: 19.98640513420105
+Predicting the embedding 1, chunk 109/710
+Time for embedding: 21.068822860717773
+Predicting the embedding 1, chunk 110/710
+Time for embedding: 21.010947704315186
+Predicting the embedding 1, chunk 111/710
+Time for embedding: 20.281217575073242
+Predicting the embedding 1, chunk 112/710
+Time for embedding: 27.11470937728882
+Predicting the embedding 1, chunk 113/710
+Time for embedding: 97.27224159240723
+Predicting the embedding 1, chunk 114/710
+Time for embedding: 20.232972145080566
+Predicting the embedding 1, chunk 115/710
+Time for embedding: 23.379563093185425
+Predicting the embedding 1, chunk 116/710
+Time for embedding: 20.21995186805725
+Predicting the embedding 1, chunk 117/710
+Time for embedding: 20.525362730026245
+Predicting the embedding 1, chunk 118/710
+Time for embedding: 21.760454416275024
+Predicting the embedding 1, chunk 119/710
+Time for embedding: 20.60669255256653
+Predicting the embedding 1, chunk 120/710
+Time for embedding: 25.550345182418823
+Predicting the embedding 1, chunk 121/710
+Time for embedding: 29.239136219024658
+Predicting the embedding 1, chunk 122/710
+Time for embedding: 34.28008675575256
+Predicting the embedding 1, chunk 123/710
