@@ -125,7 +125,7 @@ def main():
             # load the chunks and recombine them
             print(f"Recombining the chunks for {seq_id}", file=sys.stderr, flush=True)
             sequence_embedding = []
-            for chunk_index in range(chunks):
+            for chunk_index in range(len(chunks)):
                 z = np.load(os.path.join(OUT_DIR, f"{seq_id}_chunk:{chunk_index}.npy"))
                 sequence_embedding.append(z)
                 # remove the chunk file
