@@ -94,7 +94,7 @@ def main():
             sequence_embedding = []
             for chunk_index, chunk in enumerate(chunks):
                 print(f"Predicting the embedding {count+1}, chunk {chunk_index+1}/{len(chunks)}", file=sys.stderr, flush=True)
-                z = predict(seq_id=seq_id, chunk_index=chunk_index, query_sequence=chunk, write_to_path=False)    
+                z = predict(id=seq_id, chunk_index=chunk_index, query_sequence=chunk, write_to_path=False)    
                 sequence_embedding.append(z)
 
             # can happen that che subsequences are not of the same length, in this case pad them with the mean value
